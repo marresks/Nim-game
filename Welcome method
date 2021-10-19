@@ -49,14 +49,29 @@
 
         }
         
-        static void Stickor()
+      static void printarray()
         {
-            string[] hög1 = { "|", "|", "|", "|", "|"};
-            string[] hög2 = { "|", "|", "|", "|", "|" };
-            string[] hög3 = { "|", "|", "|", "|", "|" };
-
-            Console.WriteLine(string.Join(" ", hög1));
-            Console.WriteLine(string.Join(" ", hög2));
-            Console.WriteLine(string.Join(" ", hög3));
-
+            int[] arr = { 5, 5, 5 };
+            int x = 0;
+            int y = 0;
+            int z = 0;
+            while (x < arr[0])
+            {
+                Console.Write("| ");
+                x++;
+            }
+            Console.WriteLine("");
+            while (y < arr[1])
+            {
+                Console.Write("| ");
+                y++;
+            }
+            Console.WriteLine("");
+            while (z < arr[2])
+            {
+                Console.Write("| ");
+                z++;
+            }
         }
+        
+        
