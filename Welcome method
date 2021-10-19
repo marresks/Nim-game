@@ -4,3 +4,46 @@
             Console.WriteLine("There are 3 piles of sticks with 5 sticks respectively at the start of the game. The goal of the game is to pick up the last stick.");
             Console.WriteLine("This is a turn based game where the player can only pick up sticks from one pile per turn, however, the player is allowed to pick as many sticks as they would like from their chosen pile.");
         }
+        
+        static string[] VäljAntalSpelare()
+        {
+            string antalSpelare;
+
+            Console.WriteLine("Välj antal spelare, 1 eller 2.");
+            antalSpelare = Console.ReadLine();
+
+
+
+            if (antalSpelare == "1")
+            {
+                Console.WriteLine("Skriv in ditt namn här:");
+                string[] ensamSpelare = new string[1];
+                ensamSpelare[0] = Console.ReadLine();
+
+                return ensamSpelare;
+            }
+
+            else if (antalSpelare == "2")
+            {
+                string[] tvåSpelare = new string[2];
+                Console.WriteLine("Skriv in namnet på spelare 1 här:");
+                tvåSpelare[0] = Console.ReadLine();
+                Console.WriteLine("Skriv in namnet på spelare 2 här:");
+                tvåSpelare[1] = Console.ReadLine();
+
+                return tvåSpelare;
+            }
+
+
+            else
+            {
+                Console.WriteLine("Något gick snett. Försök igen!");
+
+                return VäljAntalSpelare();
+
+
+            }
+
+
+
+        }
