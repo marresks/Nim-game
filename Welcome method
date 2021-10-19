@@ -1,0 +1,6 @@
+ static void Welcome()
+        {
+            Console.WriteLine("Hello and welcome to this Nim-game. The rules are as follows: ");
+            Console.WriteLine("There are 3 piles of sticks with 5 sticks respectively at the start of the game. The goal of the game is to pick up the last stick.");
+            Console.WriteLine("This is a turn based game where the player can only pick up sticks from one pile per turn, however, the player is allowed to pick as many sticks as they would like from their chosen pile.");
+        }
