@@ -1,0 +1,46 @@
+static void Main(string[] args)
+        {
+            int[] arr = { 5, 5, 5 };
+            int x = 0;
+            int y = 0;
+            int z = 0;
+
+            while (arr[0] != 0 && arr[1] != 0 && arr[2] != 0)
+            {
+                Console.WriteLine("Chose index");
+                int index = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Chose num");
+                int num = Convert.ToInt32(Console.ReadLine());
+                arr[index] = arr[index] - num;
+                while (x < arr[0])
+                {
+                    Console.Write("| ");
+                    x++;
+                }
+                x = 0;
+                Console.WriteLine("");
+                while (y < arr[1])
+                {
+                    Console.Write("| ");
+                    y++;
+                }
+                y = 0;
+                Console.WriteLine("");
+                while (z < arr[2])
+                {
+                    Console.Write("| ");
+                    z++;
+                }
+                z = 0;
+
+            }
+            
+            
+            
+        }
+        
+
+
+
+    }
+}
