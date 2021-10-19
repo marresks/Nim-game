@@ -41,6 +41,95 @@ static void Main(string[] args)
         
 
 
+ static void Stickor(int[] arr)
+        {
+            if (ÄrHögarnaTomma(arr) == true)
+            {
+                Console.WriteLine("Vi har ett resultat...");
+            }
 
+            else
+            {
+                Console.Write("Välj en hög att plocka stickor: ");
+                int.TryParse(Console.ReadLine(), out int hög);
+                Console.Write("Välj antal stickor du vill plocka: ");
+                int.TryParse(Console.ReadLine(), out int antal);
+
+                if (hög == 1)
+                {
+                    arr[0] -= antal;
+                }
+
+                else if (hög == 2)
+                {
+                    arr[1] -= antal;
+                }
+
+                else if (hög == 3)
+                {
+                    arr[2] -= antal;
+                }
+
+                else
+                {
+                    Console.WriteLine("Något gick fel!");
+                }
+
+                int x = 0;
+                int y = 0;
+                int z = 0;
+                while (x < arr[0])
+                {
+                    Console.Write("| ");
+                    x++;
+                }
+
+                if(0 == arr[0])
+                {
+                    Console.Write("Hög 1 tom");
+                }
+
+                Console.WriteLine("");
+
+                while (y < arr[1])
+                {
+                    Console.Write("| ");
+                    y++;
+                }
+
+                if (0 == arr[1])
+                {
+                    Console.Write("Hög 2 tom");
+                }
+
+                Console.WriteLine("");
+
+                while (z < arr[2])
+                {
+                    Console.Write("| ");
+                    z++;
+                }
+
+                if (0 == arr[2])
+                {
+                    Console.Write("Hög 3 tom\n\n");
+                }
+
+                Stickor(arr);
+            }
+        }
+
+        static bool ÄrHögarnaTomma(int[] arr)
+        {
+           if (arr[0] == 0 && arr[1] == 0 && arr[2] == 0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
     }
 }
