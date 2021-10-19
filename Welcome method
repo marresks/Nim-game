@@ -125,6 +125,36 @@
                     Console.Write("| ");
                     z++;
                 }
+                
+                
+                
+                        static string villdufortsättaspela()
+        {
+            Console.WriteLine("Vill du forsätta att spela, skriv ja eller nej");
+            string svar = Console.ReadLine(); 
+
+            if (svar == "ja" || svar == "JA" || svar == "Ja")
+            {
+                Console.WriteLine("Vad kul att du vill fortsäatta spela!");
+                return Welcome();
+            }
+
+
+            else if (svar == "nej" || svar == "Nej" || svar == "NEJ")
+            {
+                Console.WriteLine("Vad tråkigt att du inte vill forsätta att spela, kom tillbka och spela snart igen!");
+                return "";
+            }
+
+            else
+            {
+                Console.WriteLine("Du har skrivit in fel input, försök igen!");
+                return villdufortsättaspela();
+            }
+        }
+         
+         
+         
         }
         
         
