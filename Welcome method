@@ -49,3 +49,17 @@
 
 
         }
+        
+        
+        
+        static void Stickor()
+        {
+            string[] hög1 = { "|", "|", "|", "|", "|" };
+            string[] hög2 = { "|", "|", "|", "|", "|" };
+            string[] hög3 = { "|", "|", "|", "|", "|" };
+
+            Console.WriteLine(string.Join(" ", hög1));
+            Console.WriteLine(string.Join(" ", hög2));
+            Console.WriteLine(string.Join(" ", hög3));
+
+        }
