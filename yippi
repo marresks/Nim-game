@@ -1,0 +1,192 @@
+using System;
+
+namespace Projektarbete
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Console.BackgroundColor = ConsoleColor.Cyan;
+            //Console.Clear();
+
+            //Console.ForegroundColor = ConsoleColor.DarkBlue;
+
+            Welcome();
+
+            int[] arr = { 5, 5, 5 };
+
+            
+
+            Stickor(arr);
+        }
+
+        static void Welcome()
+        {
+            Console.WriteLine("Hello and welcome to this Nim-game. The rules are as follows: ");
+            Console.WriteLine("There are 3 piles of sticks with 5 sticks respectively at the start of the game. The goal of the game is to pick up the last stick.");
+            Console.WriteLine("This is a turn based game where the player can only pick up sticks from one pile per turn, however, the player is allowed to pick as many sticks as they would like from their chosen pile.");
+            Console.WriteLine(" ");
+        }
+
+        static string[] VäljAntalSpelare()
+        {
+            string antalSpelare;
+
+            Console.WriteLine("Välj antal spelare, 1 eller 2.");
+            antalSpelare = Console.ReadLine();
+
+
+
+            if (antalSpelare == "1")
+            {
+                Console.WriteLine("Skriv in ditt namn här:");
+                string[] ensamSpelare = new string[1];
+                ensamSpelare[0] = Console.ReadLine();
+
+                return ensamSpelare;
+            }
+
+            else if (antalSpelare == "2")
+            {
+                string[] tvåSpelare = new string[2];
+                Console.WriteLine("Skriv in namnet på spelare 1 här:");
+                tvåSpelare[0] = Console.ReadLine();
+                Console.WriteLine("Skriv in namnet på spelare 2 här:");
+                tvåSpelare[1] = Console.ReadLine();
+
+                return tvåSpelare;
+            }
+
+
+            else
+            {
+                Console.WriteLine("Något gick snett. Försök igen!");
+
+                return VäljAntalSpelare();
+
+
+            }
+        }
+
+        static void Stickor(int[] arr)
+        {
+            int count = 1;
+            
+
+            while (ÄrHögarnaTomma(arr) == false)
+            {
+                turn(count);
+                Console.Write("Välj en hög att plocka stickor: ");
+                int.TryParse(Console.ReadLine(), out int hög);
+                Console.Write("Välj antal stickor du vill plocka: ");
+                int.TryParse(Console.ReadLine(), out int antal);
+
+                if (hög == 1)
+                {
+                    arr[0] -= antal;
+                }
+
+                else if (hög == 2)
+                {
+                    arr[1] -= antal;
+                }
+
+                else if (hög == 3)
+                {
+                    arr[2] -= antal;
+                }
+
+                else
+                {
+                    Console.WriteLine("Något gick fel!");
+                }
+
+                int x = 0;
+                int y = 0;
+                int z = 0;
+                while (x < arr[0])
+                {
+                    Console.Write("| ");
+                    x++;
+                }
+
+                if (0 == arr[0])
+                {
+                    Console.Write("Hög 1 tom");
+                }
+
+                Console.WriteLine("");
+
+                while (y < arr[1])
+                {
+                    Console.Write("| ");
+                    y++;
+                }
+
+                if (0 == arr[1])
+                {
+                    Console.Write("Hög 2 tom");
+                }
+
+                Console.WriteLine("");
+
+                while (z < arr[2])
+                {
+                    Console.Write("| ");
+                    z++;
+                }
+                Console.WriteLine(); Console.WriteLine();
+
+                if (0 == arr[2])
+                {
+                    Console.Write("Hög 3 tom\n\n");
+                }
+                count++;
+                if (ÄrHögarnaTomma(arr) == true)
+                {
+                    Console.WriteLine("Vi har ett resultat...");
+                }
+
+            }
+        }
+
+        static bool ÄrHögarnaTomma(int[] arr)
+        {
+            if (arr[0] == 0 && arr[1] == 0 && arr[2] == 0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        static void turn(int count)
+        {
+            if (count % 2 == 0)
+            {
+                Console.WriteLine($"spelare2 gör ditt drag!");
+            }
+
+            else
+            {
+                Console.WriteLine($"spelare1 gör ditt drag!");
+            }
+        }
+    }
+}
+        
+        
+
+            
+            
+            
+        
+        
+
+
+
+    
+
