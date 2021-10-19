@@ -6,8 +6,6 @@
             Console.WriteLine(" ");
         }
         
-        //Hello?
-        
         static string[] VäljAntalSpelare()
         {
             string antalSpelare;
