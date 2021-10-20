@@ -280,7 +280,7 @@ namespace Projektarbete
                 if (ÄrHögarnaTomma(arr) == true)
                 {
                     Console.WriteLine("Vi har ett resultat...");
-                    Vinnare(count, spelarID[0], "");
+                    Vinnare(count, "Motståndaren", spelarID[0]);
                     vinststatistik(count, spelStatistik[0], spelStatistik[1]);
                     villdufortsättaspela(spelarID, vinststatistik(count, spelStatistik[0], spelStatistik[1]));
                 }
@@ -392,17 +392,17 @@ namespace Projektarbete
         {
             if (count % 2 == 0)
             {
-                Console.WriteLine($"{spelare2} är vinnaren!");
+                Console.WriteLine($"{spelare1} är vinnaren!");
             }
 
             else if (spelare1 == "")
             {
-                Console.WriteLine("\n\nTyvärr förlorade du denna omgång.");
+                
             }
 
             else
             {
-                Console.WriteLine($"{spelare1} är vinnaren!");
+                Console.WriteLine($"{spelare2} är vinnaren!");
             }
 
         }
