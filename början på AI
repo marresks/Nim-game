@@ -1,0 +1,19 @@
+       static int[] random ()
+        {
+
+            int[] väljhögochstickor = new int[2];
+
+            Random random = new Random();
+
+            int väljhög = random.Next(1, 4);
+
+            int antalstickor = random.Next(1, 6);
+
+            väljhögochstickor[0] = väljhög;
+
+            väljhögochstickor[1] = antalstickor;
+
+            return väljhögochstickor;
+
+
+        }
