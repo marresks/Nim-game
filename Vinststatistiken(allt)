@@ -4,7 +4,7 @@ namespace Projektarbete
 {
     class Program
     {
-        static void Main(string[] args)
+         static void Main(string[] args)
         {
             start();
         }
@@ -113,7 +113,7 @@ namespace Projektarbete
 
                 else
                 {
-                    Console.WriteLine("Något gick fel!");
+                    Console.WriteLine("Något gick fel! Försök igen.");
                     count--;
                 }
 
@@ -191,11 +191,13 @@ namespace Projektarbete
 
             if (count % 2 == 0)
             {
+                Console.WriteLine(" ");
                 Console.WriteLine($"{spelare2} gör ditt drag!");
             }
 
             else
             {
+                Console.WriteLine(" ");
                 Console.WriteLine($"{spelare1} gör ditt drag!");
             }
         }
@@ -245,7 +247,7 @@ namespace Projektarbete
             Console.WriteLine("Vill du forsätta att spela, skriv ja eller nej");
             string svar = Console.ReadLine();
 
-            if (svar == "ja" || svar == "JA" || svar == "Ja")
+            if (svar == "ja" || svar == "JA" || svar == "Ja" || svar == "jA")
             {
                 Console.WriteLine("Vad kul att du vill fortsätta spela!");
 
@@ -253,12 +255,12 @@ namespace Projektarbete
                 Console.WriteLine("Är det samma spelare? Skriv ja eller nej!");
                 string SVAR = Console.ReadLine();
 
-                if (SVAR == "ja" || svar == "JA" || svar == "Ja")
+                if (SVAR == "ja" || svar == "JA" || svar == "Ja" || svar == "jA")
                 {
                     Spel(spelarID, vinststatistik(0, spelStatistik[0], spelStatistik[1]));
                 }
 
-                else if (SVAR == "nej" || svar == "Nej" || svar == "NEJ")
+                else if (SVAR == "nej" || svar == "Nej" || svar == "NEj" || svar == "nEj" || svar == "neJ" || svar == "NeJ")
                 {
                     start();
                 }
@@ -270,7 +272,7 @@ namespace Projektarbete
                 }
             }
 
-            else if (svar == "nej" || svar == "Nej" || svar == "NEJ")
+            else if (svar == "nej" || svar == "Nej" || svar == "NEj" || svar == "nEj" || svar == "neJ" || svar == "NeJ")
             {
                 Console.WriteLine("Vad tråkigt att du inte vill forsätta att spela, kom tillbka och spela snart igen!");
                 Console.WriteLine("");
