@@ -37,130 +37,115 @@ namespace Projektarbete
             Console.WriteLine("Gör spelplanen roligare! Välj bakgrunds samt textfärg nedan: ");
             Console.WriteLine("Bakgrundsfärg: \n 0 = Svart \n 1 = Blå \n 2 = Röd \n 3 = Grön \n 4 = Vit \n 5 = Cyan \n 6 = Magenta \n 7 = Grå \n 8 = Gul");
             string bakgrund = Console.ReadLine();
-            bool input = false;
-            while (input == false)
-            {
 
-                if (bakgrund == "0")
-                {
+            switch (bakgrund)
+            {
+                case "0":
                     Console.BackgroundColor = ConsoleColor.Black;
-                    input = true;
-                }
-                else if (bakgrund == "1")
-                {
+                    Textfärger(bakgrund);
+                    break;
+                case "1":
                     Console.BackgroundColor = ConsoleColor.Blue;
-                    input = true;
-                }
-                else if (bakgrund == "2")
-                {
+                    Textfärger(bakgrund);
+                    break;
+                case "2":
                     Console.BackgroundColor = ConsoleColor.Red;
-                    input = true;
-                }
-                else if (bakgrund == "3")
-                {
+                    Textfärger(bakgrund);
+                    break;
+                case "3":
                     Console.BackgroundColor = ConsoleColor.Green;
-                    input = true;
-                }
-                else if (bakgrund == "4")
-                {
+                    Textfärger(bakgrund);
+                    break;
+                case "4":
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Black;
-                    input = true;
-                }
-                else if (bakgrund == "5")
-                {
+                    Textfärger(bakgrund);
+                    break;
+                case "5":
                     Console.BackgroundColor = ConsoleColor.Cyan;
-                    input = true;
-                }
-                else if (bakgrund == "6")
-                {
+                    Textfärger(bakgrund);
+                    break;
+                case "6":
                     Console.BackgroundColor = ConsoleColor.Magenta;
-                    input = true;
-                }
-                else if (bakgrund == "7")
-                {
+                    Textfärger(bakgrund);
+                    break;
+                case "7":
                     Console.BackgroundColor = ConsoleColor.Gray;
-                    input = true;
-                }
-                else if (bakgrund == "8")
-                {
+                    Textfärger(bakgrund);
+                    break;
+                case "8":
                     Console.BackgroundColor = ConsoleColor.Yellow;
-                    input = true;
-                }
-                else
-                {
+                    Textfärger(bakgrund);
+                    break;
+                default:
                     Console.WriteLine("Felaktig input, skriv in en siffra mellan 0-8. ");
                     bakgrundsfärger();
-                }
+                    break;
+
             }
-            Textfärger(bakgrund);
+
         }
         static void Textfärger(string bakgrund)
         {
-            bool input = false;
-            while (input == false)
+
             {
                 Console.WriteLine("Textfärg: \n 0 = Svart \n 1 = Blå \n 2 = Röd \n 3 = Grön \n 4 = Vit \n 5 = Cyan \n 6 = Magenta \n 7 = Grå \n 8 = Gul");
                 string textfärg = Console.ReadLine();
                 if (bakgrund != textfärg)
                 {
-                    if (textfärg == "0")
+                    switch (textfärg)
                     {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        input = true;
+                        case "0":
+                            Console.ForegroundColor = ConsoleColor.Black;
+
+                            break;
+                        case "1":
+                            Console.ForegroundColor = ConsoleColor.Blue;
+
+                            break;
+                        case "2":
+                            Console.ForegroundColor = ConsoleColor.Red;
+
+                            break;
+                        case "3":
+                            Console.ForegroundColor = ConsoleColor.Green;
+
+                            break;
+                        case "4":
+                            Console.ForegroundColor = ConsoleColor.White;
+
+                            break;
+                        case "5":
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+
+                            break;
+                        case "6":
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+
+                            break;
+                        case "7":
+                            Console.ForegroundColor = ConsoleColor.Gray;
+
+                            break;
+                        case "8":
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+
+                            break;
+                        default:
+                            Console.WriteLine("Felaktig input, skriv in en siffra mellan 0-8. ");
+                            Textfärger(bakgrund);
+                            break;
                     }
-                    else if (textfärg == "1")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        input = true;
-                    }
-                    else if (textfärg == "2")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        input = true;
-                    }
-                    else if (textfärg == "3")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        input = true;
-                    }
-                    else if (textfärg == "4")
-                    {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        input = true;
-                    }
-                    else if (textfärg == "5")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        input = true;
-                    }
-                    else if (textfärg == "6")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                        input = true;
-                    }
-                    else if (textfärg == "7")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        input = true;
-                    }
-                    else if (textfärg == "8")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        input = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Felaktig input, skriv in en siffra mellan 0-8. ");
-                    }
+
+
                 }
                 else
                 {
                     Console.WriteLine("\nBakgrundsfärg och Textfärg kan ej vara samma, försök igen. ");
+                    Textfärger(bakgrund);
                 }
 
             }
-
         }
         static void Spel(string[] spelarID, int[] spelStatistik)
         {
