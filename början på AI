@@ -184,8 +184,6 @@ namespace Projektarbete
 
             while (ÄrHögarnaTomma(arr) == false)
             {
-
-
                 turn(count, "", spelarID[0]);
 
                 if (count % 2 == 0)
@@ -219,28 +217,22 @@ namespace Projektarbete
 
                 else
                 {
-                    int[] AIdrag = random();
+                    int[] AIdrag = AI(arr);
                     int hög = AIdrag[0];
                     int antal = AIdrag[1];
-                    if (hög == 1 && antal > 0 && antal <= arr[0])
+                    if (hög == 1)
                     {
                         arr[0] -= antal;
                     }
 
-                    else if (hög == 2 && antal > 0 && antal <= arr[1])
+                    else if (hög == 2)
                     {
                         arr[1] -= antal;
                     }
 
-                    else if (hög == 3 && antal > 0 && antal <= arr[2])
+                    else if (hög == 3)
                     {
                         arr[2] -= antal;
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("Något gick fel!");
-                        count--;
                     }
                 }
 
@@ -288,7 +280,7 @@ namespace Projektarbete
                 if (ÄrHögarnaTomma(arr) == true)
                 {
                     Console.WriteLine("Vi har ett resultat...");
-                    Vinnare(count, spelarID[0], spelarID[1]);
+                    Vinnare(count, "", spelarID[0]);
                     vinststatistik(count, spelStatistik[0], spelStatistik[1]);
                     villdufortsättaspela(spelarID, vinststatistik(count, spelStatistik[0], spelStatistik[1]));
                 }
@@ -298,7 +290,7 @@ namespace Projektarbete
             return count;
         }
 
-        static int[] random()
+        static int[] AI(int[] arr)
         {
 
             int[] väljhögochstickor = new int[2];
@@ -307,13 +299,37 @@ namespace Projektarbete
 
             int väljhög = random.Next(1, 4);
 
-            int antalstickor = random.Next(1, 6);
+            if(arr[väljhög - 1] != 0)
+            {
+                väljhögochstickor[0] = väljhög;
 
-            väljhögochstickor[0] = väljhög;
+                int antalstickor;
 
-            väljhögochstickor[1] = antalstickor;
+                if (väljhög == 1)
+                {
+                    antalstickor = random.Next(1, arr[0] + 1);
+                    väljhögochstickor[1] = antalstickor;
+                }
 
-            return väljhögochstickor;
+                else if (väljhög == 2)
+                {
+                    antalstickor = random.Next(1, arr[1] + 1);
+                    väljhögochstickor[1] = antalstickor;
+                }
+
+                else if (väljhög == 3)
+                {
+                    antalstickor = random.Next(1, arr[2] + 1);
+                    väljhögochstickor[1] = antalstickor;
+                }
+
+                return väljhögochstickor;
+            }
+
+            else
+            {
+                return AI(arr);
+            }
         }
 
         static bool ÄrHögarnaTomma(int[] arr)
@@ -333,7 +349,7 @@ namespace Projektarbete
         {
             if (count % 2 == 0)
             {
-                Console.WriteLine($"{spelare2} gör ditt drag!");
+                Console.WriteLine($"\n\n{spelare2} gör ditt drag!");
             }
 
             else if(spelare1 == "")
@@ -343,7 +359,7 @@ namespace Projektarbete
 
             else
             {
-                Console.WriteLine($"{spelare1} gör ditt drag!");
+                Console.WriteLine($"\n\n{spelare1} gör ditt drag!");
             }
         }
 
@@ -352,6 +368,11 @@ namespace Projektarbete
             if (count % 2 == 0)
             {
                 Console.WriteLine($"{spelare1} är vinnaren!");
+            }
+
+            else if (spelare1 == "")
+            {
+
             }
 
             else
