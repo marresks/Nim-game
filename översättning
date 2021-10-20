@@ -1,0 +1,7 @@
+        static void Welcome()
+        {
+            Console.WriteLine("Hej och välommen till Nim-spelet! Reglerna lyder som följande: ");
+            Console.WriteLine("I början av spelet finns det tre högar med pinnar, det är 5 pinnar i respektive hög. Målet med spelet är att ta den sista pinnen.");
+            Console.WriteLine("Detta är ett tur-baserat spel, man kan endast ta pinnar från en hög per tur/omgång, man får dock ta upp hur många pinnar man vill per hög.");
+            Console.WriteLine(" ");
+        }
