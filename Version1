@@ -66,6 +66,7 @@ namespace Projektarbete
                     break;
                 case "7":
                     Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
                     Textfärger(bakgrund);
                     break;
                 case "8":
