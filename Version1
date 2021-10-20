@@ -1,0 +1,606 @@
+using System;
+
+namespace Projektarbete
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            start();
+        }
+
+        static void start()
+        {
+
+            Welcome();
+
+            string[] spelarID = VäljAntalSpelare();
+
+            int spelare1Vinster = 0;
+            int spelare2Vinster = 0;
+
+            int[] spelStatistikStart = new int[2];
+            spelStatistikStart[0] = spelare1Vinster;
+            spelStatistikStart[1] = spelare2Vinster;
+
+            bakgrundsfärger();
+            Spel(spelarID, spelStatistikStart);
+        }
+
+        static void bakgrundsfärger()
+        {
+            Console.WriteLine("Gör spelplanen roligare! Välj bakgrunds samt textfärg nedan: ");
+            Console.WriteLine("Bakgrundsfärg: \n 0 = Svart \n 1 = Blå \n 2 = Röd \n 3 = Grön \n 4 = Vit \n 5 = Cyan \n 6 = Magenta \n 7 = Grå \n 8 = Gul");
+            string bakgrund = Console.ReadLine();
+
+            switch (bakgrund)
+            {
+                case "0":
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Textfärger(bakgrund);
+                    break;
+                case "1":
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Textfärger(bakgrund);
+                    break;
+                case "2":
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Textfärger(bakgrund);
+                    break;
+                case "3":
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Textfärger(bakgrund);
+                    break;
+                case "4":
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Textfärger(bakgrund);
+                    break;
+                case "5":
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Textfärger(bakgrund);
+                    break;
+                case "6":
+                    Console.BackgroundColor = ConsoleColor.Magenta;
+                    Textfärger(bakgrund);
+                    break;
+                case "7":
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Textfärger(bakgrund);
+                    break;
+                case "8":
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    break;
+                default:
+                    Console.WriteLine("Felaktig input, skriv in en siffra mellan 0-8. ");
+                    bakgrundsfärger();
+                    break;
+
+            }
+            
+
+        }
+        static void Textfärger(string bakgrund)
+        {
+            Console.WriteLine("Textfärg: \n 0 = Svart \n 1 = Blå \n 2 = Röd \n 3 = Grön \n 4 = Vit \n 5 = Cyan \n 6 = Magenta \n 7 = Grå \n 8 = Gul");
+            string textfärg = Console.ReadLine();
+            if (bakgrund != textfärg)
+            {
+                switch (textfärg)
+                {
+                    case "0":
+                        Console.ForegroundColor = ConsoleColor.Black;
+
+                        break;
+                    case "1":
+                        Console.ForegroundColor = ConsoleColor.Blue;
+
+                        break;
+                    case "2":
+                        Console.ForegroundColor = ConsoleColor.Red;
+
+                        break;
+                    case "3":
+                        Console.ForegroundColor = ConsoleColor.Green;
+
+                        break;
+                    case "4":
+                        Console.ForegroundColor = ConsoleColor.White;
+
+                        break;
+                    case "5":
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+
+                        break;
+                    case "6":
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+
+                        break;
+                    case "7":
+                        Console.ForegroundColor = ConsoleColor.Gray;
+
+                        break;
+                    case "8":
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+
+                        break;
+                    default:
+                        Console.WriteLine("Felaktig input, skriv in en siffra mellan 0-8. ");
+                        Textfärger(bakgrund);
+                        break;
+                }
+
+
+            }
+            else
+            {
+                Console.WriteLine("\nBakgrundsfärg och Textfärg kan ej vara samma, försök igen. ");
+                Textfärger(bakgrund);
+            }
+            Clear();
+            
+        }
+        static void Spel(string[] spelarID, int[] spelStatistik)
+        {
+            int[] arr = { 5, 5, 5 };
+
+            if (spelarID.Length == 1)
+            {
+                StickorAI(arr, spelarID, spelStatistik);
+            }
+
+            else if (spelarID.Length == 2)
+            {
+                Stickor(arr, spelarID, spelStatistik);
+            }
+        }
+
+        static void Welcome()
+        {
+            Console.WriteLine("Hej och välommen till Nim-spelet! Reglerna lyder som följande: ");
+            Console.WriteLine("I början av spelet finns det tre högar med pinnar, det är 5 pinnar i respektive hög. Målet med spelet är att ta den sista pinnen.");
+            Console.WriteLine("Detta är ett tur-baserat spel, man kan endast ta pinnar från en hög per tur/omgång, man får dock ta upp hur många pinnar man vill per hög.");
+            Console.WriteLine(" ");
+        }
+
+        static string[] VäljAntalSpelare()
+        {
+            string antalSpelare;
+
+            Console.WriteLine("Välj antal spelare, 1 eller 2.");
+            antalSpelare = Console.ReadLine();
+
+
+
+            if (antalSpelare == "1")
+            {
+                Console.WriteLine("Skriv in ditt namn här:");
+                string[] ensamSpelare = new string[1];
+                ensamSpelare[0] = Console.ReadLine();
+
+                return ensamSpelare;
+            }
+
+            else if (antalSpelare == "2")
+            {
+                string[] tvåSpelare = new string[2];
+                Console.WriteLine("Skriv in namnet på spelare 1 här:");
+                tvåSpelare[0] = Console.ReadLine();
+                Console.WriteLine("Skriv in namnet på spelare 2 här:");
+                tvåSpelare[1] = Console.ReadLine();
+
+                return tvåSpelare;
+            }
+
+
+            else
+            {
+                Console.WriteLine("Något gick snett. Försök igen!");
+
+                return VäljAntalSpelare();
+            }
+            
+        }
+
+        static int Stickor(int[] arr, string[] spelarID, int[] spelStatistik)
+        {
+            int count = 1;
+            Console.WriteLine("| | | | | - Hög 1");
+            Console.WriteLine("| | | | | - Hög 2");
+            Console.WriteLine("| | | | | - Hög 3");
+
+            while (ÄrHögarnaTomma(arr) == false)
+            {
+                turn(count, spelarID[0], spelarID[1]);
+                Console.Write("Välj en hög att plocka stickor: ");
+                int.TryParse(Console.ReadLine(), out int hög);
+                Console.Write("Välj antal stickor du vill plocka: ");
+                int.TryParse(Console.ReadLine(), out int antal);
+
+                if (hög == 1 && antal > 0 && antal <= arr[0])
+                {
+                    arr[0] -= antal;
+                }
+
+                else if (hög == 2 && antal > 0 && antal <= arr[1])
+                {
+                    arr[1] -= antal;
+                }
+
+                else if (hög == 3 && antal > 0 && antal <= arr[2])
+                {
+                    arr[2] -= antal;
+                }
+
+                else
+                {
+                    Console.WriteLine("Något gick fel!");
+                    count--;
+                }
+
+                int x = 0;
+                int y = 0;
+                int z = 0;
+                while (x < arr[0])
+                {
+                    Console.Write("| ");
+                    x++;
+                }
+
+                if (0 == arr[0])
+                {
+                    Console.Write("\nHög 1 tom");
+                }
+
+                Console.WriteLine("");
+
+                while (y < arr[1])
+                {
+                    Console.Write("| ");
+                    y++;
+                }
+
+                if (0 == arr[1])
+                {
+                    Console.Write("Hög 2 tom");
+                }
+
+                Console.WriteLine("");
+
+                while (z < arr[2])
+                {
+                    Console.Write("| ");
+                    z++;
+                }
+
+                if (0 == arr[2])
+                {
+                    Console.Write("Hög 3 tom\n\n");
+                }
+                count++;
+                if (ÄrHögarnaTomma(arr) == true)
+                {
+                    Console.WriteLine("Vi har ett resultat...");
+                    Vinnare(count, spelarID[0], spelarID[1]);
+                    vinststatistik(count, spelStatistik[0], spelStatistik[1]);
+                    villdufortsättaspela(spelarID, vinststatistik(count, spelStatistik[0], spelStatistik[1]));
+                }
+
+            }
+
+            return count;
+        }
+
+        static int StickorAI(int[] arr, string[] spelarID, int[] spelStatistik)
+        {
+            int count = 1;
+            Console.WriteLine("| | | | | - Hög 1");
+            Console.WriteLine("| | | | | - Hög 2");
+            Console.WriteLine("| | | | | - Hög 3");
+
+
+            while (ÄrHögarnaTomma(arr) == false)
+            {
+                turn(count, "", spelarID[0]);
+
+                if (count % 2 == 0)
+                {
+                    Console.Write("Välj en hög att plocka stickor: ");
+                    int.TryParse(Console.ReadLine(), out int hög);
+                    Console.Write("Välj antal stickor du vill plocka: ");
+                    int.TryParse(Console.ReadLine(), out int antal);
+
+                    if (hög == 1 && antal > 0 && antal <= arr[0])
+                    {
+                        arr[0] -= antal;
+                    }
+
+                    else if (hög == 2 && antal > 0 && antal <= arr[1])
+                    {
+                        arr[1] -= antal;
+                    }
+
+                    else if (hög == 3 && antal > 0 && antal <= arr[2])
+                    {
+                        arr[2] -= antal;
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Något gick fel!");
+                        count--;
+                    }
+                }
+
+                else
+                {
+                    int[] AIdrag = AI(arr);
+                    int hög = AIdrag[0];
+                    int antal = AIdrag[1];
+                    if (hög == 1)
+                    {
+                        arr[0] -= antal;
+                    }
+
+                    else if (hög == 2)
+                    {
+                        arr[1] -= antal;
+                    }
+
+                    else if (hög == 3)
+                    {
+                        arr[2] -= antal;
+                    }
+                }
+
+                int x = 0;
+                int y = 0;
+                int z = 0;
+                while (x < arr[0])
+                {
+                    Console.Write("| ");
+                    x++;
+                }
+
+                if (0 == arr[0])
+                {
+                    Console.Write("\nHög 1 tom");
+                }
+
+                Console.WriteLine("");
+
+                while (y < arr[1])
+                {
+                    Console.Write("| ");
+                    y++;
+                }
+
+                if (0 == arr[1])
+                {
+                    Console.Write("Hög 2 tom");
+                }
+
+                Console.WriteLine("");
+
+                while (z < arr[2])
+                {
+                    Console.Write("| ");
+                    z++;
+                }
+
+                if (0 == arr[2])
+                {
+                    Console.Write("Hög 3 tom\n");
+                }
+                count++;
+
+                if (ÄrHögarnaTomma(arr) == true)
+                {
+                    Console.WriteLine("Vi har ett resultat...");
+                    Vinnare(count, "Motståndaren", spelarID[0]);
+                    vinststatistik(count, spelStatistik[0], spelStatistik[1]);
+                    villdufortsättaspela(spelarID, vinststatistik(count, spelStatistik[0], spelStatistik[1]));
+                }
+
+            }
+
+            return count;
+        }
+
+        static int[] AI(int[] arr)
+        {
+            int[] väljhögochstickor = new int[2];
+
+            if (arr[0] == 0 && arr[1] == 0)
+            {
+                väljhögochstickor[0] = 3;
+                väljhögochstickor[1] = arr[2];
+                return väljhögochstickor;
+            }
+
+            else if (arr[0] == 0 && arr[2] == 0)
+            {
+                väljhögochstickor[0] = 2;
+                väljhögochstickor[1] = arr[1];
+                return väljhögochstickor;
+            }
+
+            else if (arr[1] == 0 && arr[2] == 0)
+            {
+                väljhögochstickor[0] = 1;
+                väljhögochstickor[1] = arr[0];
+                return väljhögochstickor;
+            }
+
+            else
+            {
+
+                Random random = new Random();
+
+                int väljhög = random.Next(1, 4);
+
+                if (arr[väljhög - 1] != 0)
+                {
+                    väljhögochstickor[0] = väljhög;
+
+                    int antalstickor;
+
+                    if (väljhög == 1)
+                    {
+                        antalstickor = random.Next(1, arr[0] + 1);
+                        väljhögochstickor[1] = antalstickor;
+                    }
+
+                    else if (väljhög == 2)
+                    {
+                        antalstickor = random.Next(1, arr[1] + 1);
+                        väljhögochstickor[1] = antalstickor;
+                    }
+
+                    else if (väljhög == 3)
+                    {
+                        antalstickor = random.Next(1, arr[2] + 1);
+                        väljhögochstickor[1] = antalstickor;
+                    }
+
+                    return väljhögochstickor;
+                }
+
+                else
+                {
+                    return AI(arr);
+                }
+            }
+
+        }
+
+        static bool ÄrHögarnaTomma(int[] arr)
+        {
+            if (arr[0] == 0 && arr[1] == 0 && arr[2] == 0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        static void turn(int count, string spelare1, string spelare2)
+        {
+            if (count % 2 == 0)
+            {
+                Console.WriteLine($"\n\n{spelare2} gör ditt drag!");
+            }
+
+            else if (spelare1 == "")
+            {
+                Console.WriteLine("\n\nMotståndarens drag!");
+            }
+
+            else
+            {
+                Console.WriteLine($"\n\n{spelare1} gör ditt drag!");
+            }
+        }
+
+        static void Vinnare(int count, string spelare1, string spelare2)
+        {
+            if (count % 2 == 0)
+            {
+                Console.WriteLine($"{spelare1} är vinnaren!");
+            }
+
+            else if (spelare1 == "")
+            {
+
+            }
+
+            else
+            {
+                Console.WriteLine($"{spelare2} är vinnaren!");
+            }
+
+        }
+
+        static int[] vinststatistik(int count, int spelare1Vinster, int spelare2Vinster)
+        {
+
+
+            if (count == 0)
+            {
+
+            }
+
+            else if (count % 2 == 0)
+            {
+                spelare1Vinster++;
+            }
+
+            else
+            {
+                spelare2Vinster++;
+            }
+
+            int[] vinststatistik = new int[2];
+            vinststatistik[0] = spelare1Vinster;
+            vinststatistik[1] = spelare2Vinster;
+            Console.WriteLine(string.Join(" – ", vinststatistik));
+            return vinststatistik;
+        }
+
+        static void villdufortsättaspela(string[] spelarID, int[] spelStatistik)
+        {
+            Console.WriteLine("Vill du forsätta att spela, skriv ja eller nej");
+            string svar1 = Console.ReadLine();
+            string svar = svar1.ToUpper();
+
+            if (svar == "JA")
+            {
+                Console.WriteLine("Vad kul att du vill fortsätta spela!");
+
+
+                Console.WriteLine("Är det samma spelare? Skriv ja eller nej!");
+                string SVAR1 = Console.ReadLine();
+                string SVAR = SVAR1.ToUpper();
+
+                if (SVAR == "JA")
+                {
+                    Clear();
+                    Spel(spelarID, vinststatistik(0, spelStatistik[0], spelStatistik[1]));
+                    
+                }
+
+                else if (SVAR == "NEJ")
+                {
+                    Clear();
+                    start();
+                }
+
+                else
+                {
+                    Console.WriteLine("Du har skrivit in fel input, försök igen!");
+                    villdufortsättaspela(spelarID, spelStatistik);
+                }
+            }
+
+            else if (svar == "NEJ")
+            {
+                Console.WriteLine("Vad tråkigt att du inte vill forsätta att spela, kom tillbka och spela snart igen!");
+                Console.WriteLine("");
+            }
+
+            else
+            {
+                Console.WriteLine("Du har skrivit in fel input, försök igen!");
+                villdufortsättaspela(spelarID, spelStatistik);
+            }
+        }
+        static void Clear()
+        {
+            Console.Clear();
+        }
+        
+    }
+}
