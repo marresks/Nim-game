@@ -1,71 +1,101 @@
 static void Main(string[] args)
         {
-            int[] arr = { 5, 5, 5 };
-            int x = 0;
-            int y = 0;
-            int z = 0;
-
-            while (arr[0] != 0 && arr[1] != 0 && arr[2] != 0)
-            {
-                Console.WriteLine("Chose index");
-                int index = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Chose num");
-                int num = Convert.ToInt32(Console.ReadLine());
-                arr[index] = arr[index] - num;
-                while (x < arr[0])
-                {
-                    Console.Write("| ");
-                    x++;
-                }
-                x = 0;
-                Console.WriteLine("");
-                while (y < arr[1])
-                {
-                    Console.Write("| ");
-                    y++;
-                }
-                y = 0;
-                Console.WriteLine("");
-                while (z < arr[2])
-                {
-                    Console.Write("| ");
-                    z++;
-                }
-                z = 0;
-
-            }
-            
-            
-            
+            start();
         }
-        
 
-
- static void Stickor(int[] arr)
+        static void start()
         {
-            if (ÄrHögarnaTomma(arr) == true)
+
+            //Console.BackgroundColor = ConsoleColor.Cyan;
+            //Console.Clear();
+
+            //Console.ForegroundColor = ConsoleColor.DarkBlue;
+
+            Welcome();
+
+
+
+            Spel();
+        }
+
+        static void Spel()
+        {
+            int[] arr = { 5, 5, 5 };
+
+            Stickor(arr);
+        }
+
+        static void Welcome()
+        {
+            Console.WriteLine("Hello and welcome to this Nim-game. The rules are as follows: ");
+            Console.WriteLine("There are 3 piles of sticks with 5 sticks respectively at the start of the game. The goal of the game is to pick up the last stick.");
+            Console.WriteLine("This is a turn based game where the player can only pick up sticks from one pile per turn, however, the player is allowed to pick as many sticks as they would like from their chosen pile.");
+            Console.WriteLine(" ");
+        }
+
+        static string[] VäljAntalSpelare()
+        {
+            string antalSpelare;
+
+            Console.WriteLine("Välj antal spelare, 1 eller 2.");
+            antalSpelare = Console.ReadLine();
+
+
+
+            if (antalSpelare == "1")
             {
-                Console.WriteLine("Vi har ett resultat...");
+                Console.WriteLine("Skriv in ditt namn här:");
+                string[] ensamSpelare = new string[1];
+                ensamSpelare[0] = Console.ReadLine();
+
+                return ensamSpelare;
             }
+
+            else if (antalSpelare == "2")
+            {
+                string[] tvåSpelare = new string[2];
+                Console.WriteLine("Skriv in namnet på spelare 1 här:");
+                tvåSpelare[0] = Console.ReadLine();
+                Console.WriteLine("Skriv in namnet på spelare 2 här:");
+                tvåSpelare[1] = Console.ReadLine();
+
+                return tvåSpelare;
+            }
+
 
             else
             {
+                Console.WriteLine("Något gick snett. Försök igen!");
+
+                return VäljAntalSpelare();
+            }
+        }
+
+        static void Stickor(int[] arr)
+        {
+            int count = 1;
+
+            string[] spelarID = VäljAntalSpelare();
+
+            while (ÄrHögarnaTomma(arr) == false)
+            {
+                turn(count, spelarID[0], spelarID[1]);
                 Console.Write("Välj en hög att plocka stickor: ");
                 int.TryParse(Console.ReadLine(), out int hög);
                 Console.Write("Välj antal stickor du vill plocka: ");
                 int.TryParse(Console.ReadLine(), out int antal);
 
-                if (hög == 1)
+                if (hög == 1 && antal > 0 && antal <= arr[0])
                 {
                     arr[0] -= antal;
                 }
 
-                else if (hög == 2)
+                else if (hög == 2 && antal > 0 && antal <= arr[1])
                 {
                     arr[1] -= antal;
                 }
 
-                else if (hög == 3)
+                else if (hög == 3 && antal > 0 && antal <= arr[2])
                 {
                     arr[2] -= antal;
                 }
@@ -73,6 +103,7 @@ static void Main(string[] args)
                 else
                 {
                     Console.WriteLine("Något gick fel!");
+                    count--;
                 }
 
                 int x = 0;
@@ -84,7 +115,7 @@ static void Main(string[] args)
                     x++;
                 }
 
-                if(0 == arr[0])
+                if (0 == arr[0])
                 {
                     Console.Write("Hög 1 tom");
                 }
@@ -114,14 +145,20 @@ static void Main(string[] args)
                 {
                     Console.Write("Hög 3 tom\n\n");
                 }
+                count++;
+                if (ÄrHögarnaTomma(arr) == true)
+                {
+                    Console.WriteLine("Vi har ett resultat...");
+                    Vinnare(count);
+                    villdufortsättaspela();
+                }
 
-                Stickor(arr);
             }
         }
 
         static bool ÄrHögarnaTomma(int[] arr)
         {
-           if (arr[0] == 0 && arr[1] == 0 && arr[2] == 0)
+            if (arr[0] == 0 && arr[1] == 0 && arr[2] == 0)
             {
                 return true;
             }
@@ -129,6 +166,75 @@ static void Main(string[] args)
             else
             {
                 return false;
+            }
+        }
+
+        static void turn(int count, string spelare1, string spelare2)
+        {
+            if (count % 2 == 0)
+            {
+                Console.WriteLine($"{spelare2} gör ditt drag!");
+            }
+
+            else
+            {
+                Console.WriteLine($"{spelare1} gör ditt drag!");
+            }
+        }
+
+        static void Vinnare(int count)
+        {
+            if (count % 2 == 0)
+            {
+                Console.WriteLine($"spelare1 är vinnaren!");
+            }
+
+            else
+            {
+                Console.WriteLine($"spelare2 är vinnaren!");
+            }
+        }
+
+        static void villdufortsättaspela()
+        {
+            Console.WriteLine("Vill du forsätta att spela, skriv ja eller nej");
+            string svar = Console.ReadLine();
+
+            if (svar == "ja" || svar == "JA" || svar == "Ja")
+            {
+                Console.WriteLine("Vad kul att du vill fortsäatta spela!");
+
+
+                Console.WriteLine("Är det samma spelare? Skriv ja eller nej!");
+                string SVAR = Console.ReadLine();
+
+                if (SVAR == "ja" || svar == "JA" || svar == "Ja")
+                {
+                    Spel();
+                }
+
+                else if (SVAR == "nej" || svar == "Nej" || svar == "NEJ")
+                {
+                    start();
+                }
+
+                else
+                {
+                    Console.WriteLine("Du har skrivit in fel input, försök igen!");
+                    villdufortsättaspela();
+                }
+            }
+
+            else if (svar == "nej" || svar == "Nej" || svar == "NEJ")
+            {
+                Console.WriteLine("Vad tråkigt att du inte vill forsätta att spela, kom tillbka och spela snart igen!");
+                Console.WriteLine("");
+            }
+
+            else
+            {
+                Console.WriteLine("Du har skrivit in fel input, försök igen!");
+                villdufortsättaspela();
             }
         }
     }
