@@ -12,11 +12,6 @@ namespace Projektarbete
         static void start()
         {
 
-            //Console.BackgroundColor = ConsoleColor.Cyan;
-            //Console.Clear();
-
-            //Console.ForegroundColor = ConsoleColor.DarkBlue;
-
             Welcome();
 
             string[] spelarID = VäljAntalSpelare();
