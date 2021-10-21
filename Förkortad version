@@ -166,6 +166,11 @@ namespace Projektarbete
                 Console.WriteLine("Skriv in ditt namn här:");
                 string[] ensamSpelare = new string[2];
                 ensamSpelare[1] = Console.ReadLine();
+                if (ensamSpelare[1] == "")
+                {
+                    Console.WriteLine("Du måste ha ett namn!");
+                    return VäljAntalSpelare();
+                }
                 ensamSpelare[0] = "";
 
                 return ensamSpelare;
@@ -178,6 +183,12 @@ namespace Projektarbete
                 tvåSpelare[0] = Console.ReadLine();
                 Console.WriteLine("Skriv in namnet på spelare 2 här:");
                 tvåSpelare[1] = Console.ReadLine();
+
+                if (tvåSpelare[0] == "" || tvåSpelare[1] == "")
+                {
+                    Console.WriteLine("Du måste ha ett namn!");
+                    return VäljAntalSpelare();
+                }
 
                 return tvåSpelare;
             }
