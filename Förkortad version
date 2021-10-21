@@ -11,9 +11,9 @@ namespace Projektarbete
 
         static void start()
         {
-
-            bakgrundsfärger();
             Välkommen();
+            
+            bakgrundsfärger();
 
             string[] spelarID = VäljAntalSpelare();
 
