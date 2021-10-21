@@ -427,7 +427,7 @@ namespace Projektarbete
         {
             if (count % 2 == 1)
             {
-                Console.WriteLine($"{spelare1} är vinnaren!");
+                Console.WriteLine($"{spelare2} är vinnaren!");
             }
 
             else if (spelare1 == "")
@@ -437,7 +437,7 @@ namespace Projektarbete
 
             else
             {
-                Console.WriteLine($"{spelare2} är vinnaren!");
+                Console.WriteLine($"{spelare1} är vinnaren!");
             }
 
         }
