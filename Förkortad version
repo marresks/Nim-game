@@ -12,7 +12,7 @@ namespace Projektarbete
         static void start()
         {
             Välkommen();
-            
+
             bakgrundsfärger();
 
             string[] spelarID = VäljAntalSpelare();
@@ -166,7 +166,7 @@ namespace Projektarbete
                 Console.WriteLine("Skriv in ditt namn här:");
                 string[] ensamSpelare = new string[2];
                 ensamSpelare[1] = Console.ReadLine();
-                ensamSpelare[0] = "Motståndaren";
+                ensamSpelare[0] = "";
 
                 return ensamSpelare;
             }
@@ -206,7 +206,7 @@ namespace Projektarbete
                 {
                     turn(turnCount, spelarID[0], spelarID[1]);
 
-                    if (spelarID[0] == "Motståndaren")
+                    if (spelarID[0] == "")
                     {
                         aktuellStickArray = SkrivUtHögar(Drag(AIDrag(aktuellStickArray), aktuellStickArray));
                     }
@@ -412,7 +412,7 @@ namespace Projektarbete
                 Console.WriteLine($"{spelare2} gör ditt drag!");
             }
 
-            else if (spelare1 == "Motståndaren")
+            else if (spelare1 == "")
             {
                 Console.WriteLine("Motståndarens drag!");
             }
@@ -425,9 +425,14 @@ namespace Projektarbete
 
         static void Vinnare(int count, string spelare1, string spelare2)
         {
-            if (count % 2 == 0)
+            if (count % 2 == 1)
             {
                 Console.WriteLine($"{spelare1} är vinnaren!");
+            }
+
+            else if (spelare1 == "")
+            {
+                Console.WriteLine("Tyvärr förlorade du denna omgång. Bättre lycka nästa gång!");
             }
 
             else
