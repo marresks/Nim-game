@@ -12,6 +12,7 @@ namespace Projektarbete
         static void start()
         {
 
+            bakgrundsfärger();
             Välkommen();
 
             string[] spelarID = VäljAntalSpelare();
@@ -23,7 +24,6 @@ namespace Projektarbete
             spelStatistikStart[0] = spelare1Vinster;
             spelStatistikStart[1] = spelare2Vinster;
 
-            bakgrundsfärger();
             Spel(spelarID, spelStatistikStart);
         }
 
