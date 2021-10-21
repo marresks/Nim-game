@@ -23,7 +23,7 @@ namespace Projektarbete
             spelStatistikStart[0] = spelare1Vinster;
             spelStatistikStart[1] = spelare2Vinster;
 
-            //bakgrundsfärger();
+            bakgrundsfärger();
             Spel(spelarID, spelStatistikStart);
         }
 
